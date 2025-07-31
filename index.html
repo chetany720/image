@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Creator</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Glassmorphism effect for professional UI */
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+        }
+        /* fade-in animation for image reveal */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .fade-in {
+            animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        /* Smooth transition for buttons and links */
+        a, button {
+            transition: all 0.3s ease;
+        }
+        /* Navbar link hover and focus */
+        nav a:hover, nav a:focus {
+            color: #7c3aed; /* Tailwind purple-600 */
+            text-decoration: underline;
+        }
+        /* Button hover and focus */
+        button:hover, button:focus {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(124, 58, 237, 0.3);
+        }
+        /* Image shadow and smooth transition */
+        img {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        img:hover {
+            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.4);
+            transform: scale(1.02);
+        }
+        /* Hero background subtle animation */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #hero {
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+        }
+    </style>
+</head>
+<body class="font-inter bg-gradient-to-b from-gray-50 to-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-glass backdrop-filter backdrop-blur-md border-b border-white/20 fixed w-full z-10">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-purple-600 transition-colors duration-300 ease-in-out">AI Image Creator</a>
+      <div class="space-x-6 hidden md:flex">
+        <a href="#hero" class="text-gray-600 hover:text-purple-600 transition-colors duration-300 ease-in-out">Home</a>
+        <a href="#features" class="text-gray-600 hover:text-purple-600 transition-colors duration-300 ease-in-out">Features</a>
+        <a href="#creator" class="text-gray-600 hover:text-purple-600 transition-colors duration-300 ease-in-out">Create</a>
+        <a href="#contact" class="text-gray-600 hover:text-purple-600 transition-colors duration-300 ease-in-out">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative bg-cover bg-center min-h-screen" style="background-image: url('https://source.unsplash.com/1920x1080/?technology,abstract');">
+    <div class="container mx-auto px-6 flex items-center justify-center min-h-screen">
+      <div class="bg-glass p-12 rounded-2xl shadow-xl max-w-2xl text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-gray-900">Unleash Your Creativity</h1>
+        <p class="mb-8 text-lg text-gray-700">Generate stunning AI images in seconds with our intuitive generator.</p>
+        <a href="#creator" class="inline-block bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:from-purple-700 hover:to-indigo-700 transition duration-300">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center bg-glass p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <svg class="mx-auto h-12 w-12 text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <h3 class="text-xl font-semibold mb-2">Fast Generation</h3>
+          <p class="text-gray-600">Get your images generated in real-time with low latency.</p>
+        </div>
+        <div class="text-center bg-glass p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <svg class="mx-auto h-12 w-12 text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h2l.344 2.066A2 2 0 007.312 11H16.69a2 2 0 001.968-1.934L19 7h2M5 21h14a2 2 0 002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" />
+          </svg>
+          <h3 class="text-xl font-semibold mb-2">High Quality</h3>
+          <p class="text-gray-600">AI-optimized settings ensure crisp, detailed images every time.</p>
+        </div>
+        <div class="text-center bg-glass p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <svg class="mx-auto h-12 w-12 text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v4m0 4v10" />
+          </svg>
+          <h3 class="text-xl font-semibold mb-2">Fully Customizable</h3>
+          <p class="text-gray-600">Fine-tune prompts and settings to craft your perfect image.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Image Creator Section -->
+  <section id="creator" class="py-20">
+    <div class="container mx-auto px-6 flex justify-center">
+      <div class="bg-glass border border-white/20 p-10 rounded-2xl shadow-xl w-full max-w-md">
+         <h1 class="text-3xl font-extrabold text-gray-900 mb-6 text-center">
+             AI Image Creator
+         </h1>
+
+        <!-- Input field for the prompt -->
+        <div class="mb-4">
+            <label for="prompt" class="block text-sm font-medium text-gray-700 mb-2">
+                Enter your image prompt:
+            </label>
+            <textarea
+                id="prompt"
+                class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 placeholder-gray-400 transition duration-300 ease-in-out resize-y"
+                rows="4"
+                placeholder="e.g., A majestic dragon soaring over a medieval castle at dawn"
+            ></textarea>
+        </div>
+
+        <!-- Aspect Ratio Option -->
+        <div class="mb-4">
+            <label for="aspectRatio" class="block text-sm font-medium text-gray-700 mb-2">Aspect Ratio:</label>
+            <select id="aspectRatio" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="1:1">1:1 (Square)</option>
+                <option value="16:9">16:9 (Landscape)</option>
+                <option value="4:3">4:3 (Standard)</option>
+                <option value="9:16">9:16 (Portrait)</option>
+            </select>
+        </div>
+
+        <!-- Action buttons: Improve, Preview, Generate -->
+        <div class="flex gap-3 mb-4">
+            <button
+                id="improveButton"
+                class="flex-1 py-3 px-4 rounded-md text-purple-600 font-semibold bg-white border-2 border-purple-600 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 shadow-lg transform transition-all duration-300 hover:scale-105"
+                style="will-change: transform, box-shadow"
+            >
+                Improve Prompt
+            </button>
+            <button
+                id="previewButton"
+                class="flex-1 py-3 px-4 rounded-md text-gray-700 font-semibold bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 shadow transform transition duration-300"
+            >
+                Preview Image
+            </button>
+            <button
+                id="generateButton"
+                class="flex-1 py-3 px-4 rounded-md text-white font-semibold bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-lg transition-all duration-300 hover:scale-105"
+            >
+                Generate Image
+            </button>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loadingIndicator" class="hidden mt-4 text-center text-blue-600 font-medium">
+            <div class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Generating...
+            </div>
+        </div>
+
+        <!-- Error message display -->
+        <div id="errorMessage" class="hidden mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
+            <p class="font-medium">Error:</p>
+            <p id="errorText"></p>
+        </div>
+
+        <!-- Display generated image -->
+        <div id="imageContainer" class="hidden mt-6 text-center">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Generated Image:</h2>
+            <div class="bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center min-h-[200px]">
+                <img id="generatedImage" alt="Generated AI Image" class="max-w-full h-auto rounded-lg shadow-md" />
+            </div>
+        </div>
+        <!-- Download button for generated image -->
+        <button id="downloadButton" class="hidden mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105" style="will-change: transform, background-color">
+            Download Image
+        </button>
+        <!-- History Section -->
+        <div id="historySection" class="hidden mt-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">History</h2>
+            <div id="historyList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            <button id="clearHistoryButton" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105" style="will-change: transform, background-color">Clear History</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-gray-800 py-8 text-white">
+     <div class="container mx-auto px-6 text-center">
+      <p class="">&copy; 2025 AI Image Creator. All rights reserved.</p>
+    </div>
+   </footer>
+
+  <script>
+        // Get references to DOM elements
+        const aspectRatioSelect = document.getElementById('aspectRatio');
+        const previewButton = document.getElementById('previewButton');
+        const promptInput = document.getElementById('prompt');
+        const improveButton = document.getElementById('improveButton');
+        const generateButton = document.getElementById('generateButton');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const imageContainer = document.getElementById('imageContainer');
+        const generatedImage = document.getElementById('generatedImage');
+        const downloadButton = document.getElementById('downloadButton');
+        const historyList = document.getElementById('historyList');
+        const clearHistoryButton = document.getElementById('clearHistoryButton');
+        const historySection = document.getElementById('historySection');
+        let history = [];
+
+        // Function to show an error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+        }
+
+        // Function to hide the error message
+        function hideError() {
+            errorMessage.classList.add('hidden');
+            errorText.textContent = '';
+        }
+
+        // Function to set loading state
+        function setLoading(isLoading, buttonType = 'generate') {
+            const button = buttonType === 'improve' ? improveButton : generateButton;
+            const otherButton = buttonType === 'improve' ? generateButton : improveButton;
+            
+            if (isLoading) {
+                loadingIndicator.classList.remove('hidden');
+                button.disabled = true;
+                otherButton.disabled = true;
+                
+                if (buttonType === 'improve') {
+                    button.classList.remove('bg-white', 'border-purple-600', 'text-purple-600', 'hover:bg-purple-50');
+                    button.classList.add('bg-purple-100', 'border-purple-300', 'text-purple-400', 'cursor-not-allowed');
+                } else {
+                    button.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                    button.classList.add('bg-blue-300', 'cursor-not-allowed');
+                }
+            } else {
+                loadingIndicator.classList.add('hidden');
+                button.disabled = false;
+                otherButton.disabled = false;
+                
+                if (buttonType === 'improve') {
+                    button.classList.remove('bg-purple-100', 'border-purple-300', 'text-purple-400', 'cursor-not-allowed');
+                    button.classList.add('bg-white', 'border-purple-600', 'text-purple-600', 'hover:bg-purple-50');
+                } else {
+                    button.classList.remove('bg-blue-300', 'cursor-not-allowed');
+                    button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                }
+            }
+        }
+
+        // Function to improve prompt using AI
+        async function improvePrompt() {
+            hideError(); // Clear previous errors
+            setLoading(true, 'improve'); // Set loading state for improve button
+
+            const prompt = promptInput.value.trim();
+
+            if (!prompt) {
+                showError('Please enter a prompt to improve.');
+                setLoading(false, 'improve');
+                return;
+            }
+
+            try {
+                // Define the API payload for prompt improvement
+                const improvePromptPayload = {
+                    contents: [{
+                        parts: [{ 
+                            text: `You are an expert AI image generation prompt engineer. Please improve the following prompt to make it more detailed, specific, and effective for generating high-quality images. Add artistic details, lighting, style, composition, and technical aspects that would enhance the visual result. Keep the core concept but make it much more descriptive and engaging.
+
+Original prompt: "${prompt}"
+
+Please provide only the improved prompt without any explanations or additional text.` 
+                        }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ['TEXT']
+                    },
+                };
+
+                const apiKey = "AIzaSyCKDwZzoyABGEnDYkh0mEMB9nXSFb2jArk";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-thinking-exp:generateContent?key=${apiKey}`;
+
+                // Fetch call with exponential backoff for retries
+                let response;
+                let retries = 0;
+                const maxRetries = 3;
+                const baseDelay = 1000; // 1 second
+
+                while (retries < maxRetries) {
+                    try {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(improvePromptPayload)
+                        });
+
+                        if (response.ok) {
+                            break; // Exit loop if successful
+                        } else if (response.status === 429) { // Too Many Requests
+                            const delay = baseDelay * Math.pow(2, retries);
+                            console.warn(`Rate limit hit, retrying in ${delay / 1000}s...`);
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            retries++;
+                        } else {
+                            const errorData = await response.json();
+                            throw new Error(errorData.error?.message || `API error: ${response.statusText}`);
+                        }
+                    } catch (fetchError) {
+                        if (retries === maxRetries - 1) {
+                            throw fetchError; // Re-throw if last retry fails
+                        }
+                        const delay = baseDelay * Math.pow(2, retries);
+                        console.error(`Fetch error: ${fetchError.message}. Retrying in ${delay / 1000}s...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        retries++;
+                    }
+                }
+
+                if (!response || !response.ok) {
+                    throw new Error('Failed to improve prompt after multiple retries.');
+                }
+
+                const result = await response.json();
+
+                // Extract the improved prompt from the response
+                const improvedPrompt = result?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+
+                if (improvedPrompt) {
+                    promptInput.value = improvedPrompt;
+                    // Auto-resize textarea if needed
+                    promptInput.style.height = 'auto';
+                    promptInput.style.height = promptInput.scrollHeight + 'px';
+                } else {
+                    showError('No improved prompt received from the API.');
+                }
+            } catch (err) {
+                console.error('Error improving prompt:', err);
+                showError(`Failed to improve prompt: ${err.message}`);
+            } finally {
+                setLoading(false, 'improve'); // Set loading to false regardless of success or failure
+            }
+        }
+
+        // Function to handle image generation
+        async function generateImage() {
+            hideError(); // Clear previous errors
+            imageContainer.classList.add('hidden'); // Hide previous image
+            generatedImage.src = ''; // Clear image source
+            setLoading(true); // Set loading state
+
+            const prompt = promptInput.value.trim();
+            const ratio = aspectRatioSelect.value;
+            const fullPrompt = `${prompt} (Aspect Ratio: ${ratio})`;
+
+            if (!prompt) {
+                showError('Please enter a prompt to generate an image.');
+                setLoading(false, 'generate');
+                return;
+            }
+
+            try {
+                // Define the API payload with the user's prompt for gemini-2.0-flash-preview-image-generation
+                const payload = {
+                    contents: [{
+                        parts: [{ text: fullPrompt }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ['TEXT', 'IMAGE']
+                    },
+                };
+
+                // The API key is now explicitly set using the one you provided
+                const apiKey = "AIzaSyCKDwZzoyABGEnDYkh0mEMB9nXSFb2jArk";
+                // Changed to gemini-2.0-flash-preview-image-generation model
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${apiKey}`;
+
+                // Fetch call with exponential backoff for retries
+                let response;
+                let retries = 0;
+                const maxRetries = 5;
+                const baseDelay = 1000; // 1 second
+
+                while (retries < maxRetries) {
+                    try {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.ok) {
+                            break; // Exit loop if successful
+                        } else if (response.status === 429) { // Too Many Requests
+                            const delay = baseDelay * Math.pow(2, retries);
+                            console.warn(`Rate limit hit, retrying in ${delay / 1000}s...`);
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            retries++;
+                        } else {
+                            const errorData = await response.json();
+                            throw new Error(errorData.error?.message || `API error: ${response.statusText}`);
+                        }
+                    } catch (fetchError) {
+                        if (retries === maxRetries - 1) {
+                            throw fetchError; // Re-throw if last retry fails
+                        }
+                        const delay = baseDelay * Math.pow(2, retries);
+                        console.error(`Fetch error: ${fetchError.message}. Retrying in ${delay / 1000}s...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        retries++;
+                    }
+                }
+
+                if (!response || !response.ok) {
+                    throw new Error('Failed to fetch image after multiple retries.');
+                }
+
+                const result = await response.json();
+
+                // Check if the response contains the image data for gemini-2.0-flash-preview-image-generation
+                const base64Data = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
+
+                if (base64Data) {
+                    const dataUrl = `data:image/png;base64,${base64Data}`;
+                    generatedImage.src = dataUrl;
+                    imageContainer.classList.remove('hidden');
+                    // Show download button for current image
+                    downloadButton.classList.remove('hidden');
+                    downloadButton.onclick = () => downloadImage(dataUrl, prompt);
+                    // Add to history
+                    history.unshift(base64Data);
+                    renderHistory();
+                } else {
+                    showError('No image data received from the API.');
+                }
+            } catch (err) {
+                console.error('Error generating image:', err);
+                showError(`Failed to generate image: ${err.message}`); // Display error to the user
+            } finally {
+                setLoading(false, 'generate'); // Set loading to false regardless of success or failure
+            }
+        }
+
+        // Preview image without storing to history
+        async function previewImage() {
+            hideError();
+            imageContainer.classList.add('hidden');
+            downloadButton.classList.add('hidden');
+            const prompt = promptInput.value.trim();
+            const ratio = aspectRatioSelect.value;
+            if (!prompt) {
+                showError('Please enter a prompt to preview.');
+                return;
+            }
+            setLoading(true);
+            try {
+                const fullPrompt = `${prompt} (Aspect Ratio: ${ratio})`;
+                const payload = { contents: [{ parts: [{ text: fullPrompt }] }], generationConfig: { responseModalities: ['TEXT','IMAGE'] } };
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=AIzaSyCKDwZzoyABGEnDYkh0mEMB9nXSFb2jArk`;
+                const response = await fetch(apiUrl, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+                const result = await response.json();
+                const base64Data = result?.candidates?.[0]?.content?.parts?.find(p=>p.inlineData)?.inlineData?.data;
+                if (base64Data) {
+                    generatedImage.src = `data:image/png;base64,${base64Data}`;
+                    imageContainer.classList.remove('hidden');
+                } else {
+                    showError('No preview image received from API.');
+                }
+            } catch (err) {
+                showError(`Preview failed: ${err.message}`);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        // Add event listeners to the buttons
+        improveButton.addEventListener('click', improvePrompt);
+        previewButton.addEventListener('click', previewImage);
+        generateButton.addEventListener('click', generateImage);
+
+        // Optional: Enable/disable buttons based on prompt input
+        promptInput.addEventListener('input', () => {
+            const hasText = promptInput.value.trim();
+            
+            // Update improve button state
+            if (hasText) {
+                improveButton.disabled = false;
+                improveButton.classList.remove('bg-purple-100', 'border-purple-300', 'text-purple-400', 'cursor-not-allowed');
+                improveButton.classList.add('bg-white', 'border-purple-600', 'text-purple-600', 'hover:bg-purple-50');
+            } else {
+                improveButton.disabled = true;
+                improveButton.classList.remove('bg-white', 'border-purple-600', 'text-purple-600', 'hover:bg-purple-50');
+                improveButton.classList.add('bg-purple-100', 'border-purple-300', 'text-purple-400', 'cursor-not-allowed');
+            }
+            
+            // Update generate button state
+            if (hasText) {
+                generateButton.disabled = false;
+                generateButton.classList.remove('bg-blue-300', 'cursor-not-allowed');
+                generateButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                generateButton.disabled = true;
+                generateButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                generateButton.classList.add('bg-blue-300', 'cursor-not-allowed');
+            }
+        });
+
+        // Initialize button states on load
+        window.onload = () => {
+            promptInput.value = ''; // Clear prompt on load
+            
+            // Disable both buttons initially
+            improveButton.disabled = true;
+            improveButton.classList.remove('bg-white', 'border-purple-600', 'text-purple-600', 'hover:bg-purple-50');
+            improveButton.classList.add('bg-purple-100', 'border-purple-300', 'text-purple-400', 'cursor-not-allowed');
+            
+            generateButton.disabled = true;
+            generateButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            generateButton.classList.add('bg-blue-300', 'cursor-not-allowed');
+            
+            // hide download and history on load
+            downloadButton.classList.add('hidden');
+            historySection.classList.add('hidden');
+        };
+
+        // Function to download image given data URL and prompt
+        function downloadImage(dataUrl, promptText) {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            const fileName = promptText ? promptText.replace(/\s+/g, '_').slice(0,20) : 'ai_image';
+            link.download = `${fileName}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Render history of generated images
+        function renderHistory() {
+            historyList.innerHTML = '';
+            // toggle history section visibility
+            if (history.length > 0) {
+                historySection.classList.remove('hidden');
+            } else {
+                historySection.classList.add('hidden');
+            }
+            history.forEach((base64Data, index) => {
+                const container = document.createElement('div');
+                container.className = 'bg-white p-2 rounded shadow';
+                const img = document.createElement('img');
+                img.src = `data:image/png;base64,${base64Data}`;
+                img.className = 'w-full h-auto rounded';
+                img.classList.add('fade-in');
+                const btn = document.createElement('button');
+                btn.textContent = 'Download';
+                btn.className = 'mt-2 w-full px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600';
+                btn.onclick = () => downloadImage(img.src, `history_${index}`);
+                container.appendChild(img);
+                container.appendChild(btn);
+                historyList.appendChild(container);
+            });
+        }
+
+        // Clear history button handler
+        clearHistoryButton.addEventListener('click', () => {
+            history = [];
+            renderHistory();
+        });
+
+    </script>
+</body>
+</html>
